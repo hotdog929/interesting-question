@@ -42,11 +42,11 @@ for(
 )when(
   w > x,
   y = w - x,
+  y > 20,
   y + z == 111,
   r = (w.toString + x.toString + y.toString + z.toString),
   r.toSet.length == 8,
   !r.contains('0')
-  !r.contains('1')
 ).length
  */
 
@@ -56,16 +56,16 @@ val answers = for {
   z <- (21 to 98)
   if w > x
   y = w - x
+  if y > 20
   if y + z == 111
   r = w.toString + x.toString + y.toString + z.toString
   if r.toSet.size == 8
   if !r.contains("0")
-  if !r.contains("1")
 } yield (w, x, y, z)
 println(s"total answers is ${answers.size},\ndetails :\n${answers}")
 
 /*
-total answers is 15,
+total answers is 3,
 details :
-Vector((43,27,16,95), (43,28,15,96), (45,27,18,93), (47,32,15,96), (48,32,16,95), (52,38,14,97), (65,47,18,93), (67,54,13,98), (72,54,18,93), (74,56,18,93), (75,62,13,98), (82,65,17,94), (85,46,39,72), (86,54,32,79), (95,27,68,43))
+Vector((85,46,39,72), (86,54,32,79), (95,27,68,43))
 */
