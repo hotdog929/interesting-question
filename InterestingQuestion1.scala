@@ -46,6 +46,7 @@ for(
   r = (w.toString + x.toString + y.toString + z.toString),
   r.toSet.length == 8,
   !r.contains('0')
+  !r.contains('1')
 ).length
  */
 
@@ -59,6 +60,7 @@ val answers = for {
   r = w.toString + x.toString + y.toString + z.toString
   if r.toSet.size == 8
   if !r.contains("0")
+  if !r.contains("1")
 } yield (w, x, y, z)
 println(s"total answers is ${answers.size},\ndetails :\n${answers}")
 
