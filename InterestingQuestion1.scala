@@ -42,11 +42,11 @@ for(
 )when(
   w > x,
   y = w - x,
-  y > 20,
   y + z == 111,
   r = (w.toString + x.toString + y.toString + z.toString),
   r.toSet.length == 8,
   !r.contains('0')
+  !r.contains('1')
 ).length
  */
 
@@ -56,16 +56,44 @@ val answers = for {
   z <- (21 to 98)
   if w > x
   y = w - x
-  if y > 20
   if y + z == 111
-  r = w.toString + x.toString + y.toString + z.toString
+  r = s"$w$x$y$z"
   if r.toSet.size == 8
   if !r.contains("0")
+  if !r.contains("1")
 } yield (w, x, y, z)
-println(s"total answers is ${answers.size},\ndetails :\n${answers}")
+println(s"1 ~ 9\ntotal answers is ${answers.size},\ndetails :\n${answers}\n")
+
 
 /*
-total answers is 3,
-details :
-Vector((85,46,39,72), (86,54,32,79), (95,27,68,43))
-*/
+若範圍是 0 到 9
+ */
+
+val answers09 = for {
+  w <- (2 to 98)
+  x <- (2 to 98)
+  z <- (2 to 98)
+  if w > x
+  y = w - x
+  if y + z == 111
+  r = f"${w}%02d${x}%02d${y}%02d${z}%02d"
+  if r.toSet.size == 8
+  if !r.contains("1")
+} yield (w, x, y, z)
+println(s"0 ~ 9\ntotal answers is ${answers09.size},\ndetails :\n${answers09}\n")
+
+/*
+若範圍包含 - 號 0 到 9
+ */
+val answersMinus = for {
+  w <- (-9 to 98)
+  x <- (-9 to 98)
+  z <- (-9 to 98)
+  y = w - x
+  if y > -10
+  if y + z == 111 || y + z == 0
+  r = f"${w}%02d${x}%02d${y}%02d${z}%02d"
+  if r.toSet.size == 8
+  if !r.contains("1")
+} yield (w, x, y, z)
+println(s"- , 0 ~ 9\ntotal answers is ${answersMinus.size},\ndetails :\n${answersMinus}\n")
